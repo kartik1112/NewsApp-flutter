@@ -7,3 +7,9 @@ class FetchDataFromApiEvent extends HomeBlocEvent {
   final String country;
   FetchDataFromApiEvent(this.country);
 }
+
+class ChangeLocationFloatingButtonClickedEvent extends HomeBlocEvent {
+  final BuildContext context;
+
+  ChangeLocationFloatingButtonClickedEvent({required this.context});
+}

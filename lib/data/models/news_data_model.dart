@@ -17,13 +17,6 @@ class NewsDataModel {
     this.publisher,
   });
 
-  // NewsDataModel(
-  //     {this.imageUrl,
-  //     this.author,
-  //     this.title,
-  //     this.description,
-  //     this.publisher});
-
   NewsDataModel copyWith({
     String? imageUrl,
     String? author,
@@ -50,35 +43,18 @@ class NewsDataModel {
     };
   }
 
-/*
-String imageuri = (result[index]['urlToImage'] != null)
-              ? result[index]['urlToImage']
-              : "https//:static.toiimg.com/thumb/msid-107676957,width-1070,height-580,imgsize-30480,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg";
-          String publisher = (result[index]['source']['name'] != null)
-              ? result[index]['source']['name']
-              : "null piublisher";
-          String author = (result[index]['author'] != null)
-              ? result[index]['author']
-              : "null author";
-          String title = (result[index]['title'] != null)
-              ? result[index]['title']
-              : "null title";
-
-*/
-
   factory NewsDataModel.fromMap(Map<String, dynamic> map) {
-    // map.printInfo();
     return NewsDataModel(
-      imageUrl: map['urlToImage'] ?? "https://images.unsplash.com/photo-1682685797898-6d7587974771?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
+      imageUrl: map['urlToImage'] ,
       author:
-          map['author'] != null ? map['author'] as String : "author",
-      title: map['title'] != null ? map['title'] as String : "title",
+          map['author'] != null ? map['author'] as String : "Anonymous!",
+      title: map['title'] != null ? map['title'] as String : "Untitled!",
       description: map['description'] != null
           ? map['description'] as String
-          : "description",
+          : "No Description Found..",
       publisher: map['source']['name'] != null
           ? map['source']['name'] as String
-          : "publisher",
+          : "Not Found..",
     );
   }
 

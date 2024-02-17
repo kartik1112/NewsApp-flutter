@@ -8,10 +8,9 @@ class NewsDataRepository {
   final NewsDataProvider newsDataProvider;
   NewsDataRepository(this.newsDataProvider);
 
-  Future<List<NewsDataModel>> fetchNews() async {
-    String country = 'in';
+  Future<List<NewsDataModel>> fetchNews(String country) async {
+    // String country = 'in';
       final newsData = await newsDataProvider.fetchNews(country);
-      // newsData.printInfo();
       final data = jsonDecode(newsData);
 
       if (data['status'] != "ok") {
@@ -22,28 +21,6 @@ class NewsDataRepository {
       for (var article in data['articles']) {
         resultList.add(NewsDataModel.fromMap(article));
       }
-      // return ;
       return resultList;
-    // try {
-    //   String country = 'in';
-    //   final newsData = await newsDataProvider.fetchNews(country);
-    //   // newsData.printInfo();
-    //   final data = jsonDecode(newsData);
-
-    //   if (data['status'] != "ok") {
-    //     throw "status not okay error occoured";
-    //   }
-
-    //   List<NewsDataModel> resultList = [];
-    //   for (var article in data['articles']) {
-    //     resultList.add(NewsDataModel.fromMap(article));
-    //   }
-    //   // return ;
-    //   return resultList;
-    // } catch (e) {
-    //   e.printError();
-    //   print(e);
-    //   return [];
-    // }
   }
 }
