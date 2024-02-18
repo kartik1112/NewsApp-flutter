@@ -1,20 +1,20 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:get/get.dart';
-
 class NewsDataModel {
   final String? imageUrl;
   final String? author;
   final String? title;
   final String? description;
   final String? publisher;
+  final String? url;
   NewsDataModel({
     this.imageUrl,
     this.author,
     this.title,
     this.description,
     this.publisher,
+    this.url,
   });
 
   NewsDataModel copyWith({
@@ -23,6 +23,7 @@ class NewsDataModel {
     String? title,
     String? description,
     String? publisher,
+    String? url,
   }) {
     return NewsDataModel(
       imageUrl: imageUrl ?? this.imageUrl,
@@ -30,6 +31,7 @@ class NewsDataModel {
       title: title ?? this.title,
       description: description ?? this.description,
       publisher: publisher ?? this.publisher,
+      url: url ?? this.url,
     );
   }
 
@@ -40,6 +42,7 @@ class NewsDataModel {
       'title': title,
       'description': description,
       'publisher': publisher,
+      'url': url,
     };
   }
 
@@ -55,6 +58,9 @@ class NewsDataModel {
       publisher: map['source']['name'] != null
           ? map['source']['name'] as String
           : "Not Found..",
+      url: map['url'] != null
+          ? map['url'] as String
+          : "",
     );
   }
 
@@ -65,7 +71,7 @@ class NewsDataModel {
 
   @override
   String toString() {
-    return 'NewsDataModel(imageUrl: $imageUrl, author: $author, title: $title, description: $description, publisher: $publisher)';
+    return 'NewsDataModel(imageUrl: $imageUrl, author: $author, title: $title, description: $description, publisher: $publisher, url: $url)';
   }
 
   @override
@@ -76,7 +82,8 @@ class NewsDataModel {
         other.author == author &&
         other.title == title &&
         other.description == description &&
-        other.publisher == publisher;
+        other.publisher == publisher &&
+        other.url == url;
   }
 
   @override
@@ -85,6 +92,7 @@ class NewsDataModel {
         author.hashCode ^
         title.hashCode ^
         description.hashCode ^
-        publisher.hashCode;
+        publisher.hashCode ^
+        url.hashCode;
   }
 }

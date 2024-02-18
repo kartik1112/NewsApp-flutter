@@ -27,15 +27,18 @@ class NewsCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CachedNetworkImage(
-                    filterQuality: FilterQuality.low,
-                    fit: BoxFit.cover,
-                    height: 250,
-                    width: double.infinity,
-                    errorWidget: (context, url, error) => Lottie.network(height: 50,width:50,"https://lottie.host/bd6aadad-c911-4ae2-a4e5-77ab61c0f013/PlNCeCDrUc.json"),
-                    placeholder: (context, url) =>
-                        Lottie.network("https://lottie.host/41a56c0d-2bf6-4325-9a47-0af60e4c2688/sbOgcmYPJe.json"),
-                    imageUrl: state.newsModel[index].imageUrl?? "Invalid Value",
+                  Hero(
+                    tag: state.newsModel[index].title.toString(),
+                    child: CachedNetworkImage(
+                      filterQuality: FilterQuality.low,
+                      fit: BoxFit.cover,
+                      height: 250,
+                      width: double.infinity,
+                      errorWidget: (context, url, error) => Lottie.network(height: 50,width:50,"https://lottie.host/bd6aadad-c911-4ae2-a4e5-77ab61c0f013/PlNCeCDrUc.json"),
+                      placeholder: (context, url) =>
+                          Lottie.network("https://lottie.host/41a56c0d-2bf6-4325-9a47-0af60e4c2688/sbOgcmYPJe.json"),
+                      imageUrl: state.newsModel[index].imageUrl?? "nourl",
+                    ),
                   ),
                   const SizedBox(
                     height: 18,

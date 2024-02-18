@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:news_app/screens/bloc/home_bloc_bloc.dart';
+import 'package:news_app/screens/news_details_screen.dart';
 import 'package:news_app/widgets/news_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,7 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
         return Scaffold(
           floatingActionButton: FloatingActionButton.extended(
               onPressed: () {
-                context.read<HomeBlocBloc>().add(ChangeLocationFloatingButtonClickedEvent(context: context));
+                context.read<HomeBlocBloc>().add(
+                    ChangeLocationFloatingButtonClickedEvent(context: context));
               },
               label: const Text("Change Location")),
           appBar: AppBar(
@@ -39,8 +40,18 @@ class _HomeScreenState extends State<HomeScreen> {
           body: ListView.builder(
             itemCount: state.newsModel.length,
             itemBuilder: (context, index) {
-              return NewsCardWidget(
-                index: index,
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NewsDetailsScreen(index: index,),
+                    ),
+                  );
+                },
+                child: NewsCardWidget(
+                  index: index,
+                ),
               );
             },
           ),
